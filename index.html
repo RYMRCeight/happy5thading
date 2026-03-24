@@ -8,141 +8,141 @@
 
 <style>
 
-body {
-margin: 0;
-font-family: 'Segoe UI', sans-serif;
-
-background-image: url("back.png");
-background-size: cover;
-background-position: center;
-
-color: white;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh;
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background-image:url("back.png");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+overflow:hidden;
 }
 
-/* DARK OVERLAY */
-
-body::before {
-content: "";
-position: absolute;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.65);
-z-index: 0;
+body::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.65);
+z-index:0;
 }
 
 /* ENTER SCREEN */
 
-#enterScreen {
-text-align: center;
-z-index: 1;
+#enterScreen{
+z-index:1;
 }
 
-#enterBtn {
-padding: 20px 50px;
-font-size: 26px;
-border: none;
-background: black;
-color: white;
-border-radius: 50px;
-cursor: pointer;
-transition: 0.3s;
+#enterBtn{
+padding:22px 55px;
+font-size:28px;
+border:none;
+background:black;
+color:white;
+border-radius:50px;
+cursor:pointer;
+transition:.3s;
 }
 
-#enterBtn:hover {
-background: #333;
+#enterBtn:hover{
+background:#333;
 }
 
 /* PLAYER SCREEN */
 
-#playerScreen {
-display: none;
-width: 95%;
-max-width: 520px;
-height: 90vh;
-background: rgba(0,0,0,0.85);
-border-radius: 20px;
-padding: 25px;
-box-shadow: 0px 10px 40px rgba(0,0,0,0.6);
-overflow: hidden;
-text-align: center;
-z-index: 1;
+#playerScreen{
+display:none;
+width:95%;
+max-width:520px;
+height:90vh;
+background:rgba(0,0,0,.85);
+border-radius:20px;
+padding:25px;
+box-shadow:0 10px 40px rgba(0,0,0,.6);
+overflow:hidden;
+text-align:center;
+z-index:1;
 }
 
 /* COVER IMAGE */
 
-.album {
-width: 220px;
-border-radius: 18px;
-margin-bottom: 15px;
-box-shadow: 0px 10px 25px rgba(0,0,0,0.5);
+.album{
+width:220px;
+border-radius:18px;
+margin-bottom:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.5);
 }
 
 /* TEXT */
 
-.song-title {
-font-size: 26px;
-font-weight: bold;
-margin-top: 10px;
+.song-title{
+font-size:26px;
+font-weight:bold;
+margin-top:10px;
 }
 
-.artist {
-color: #b3b3b3;
-margin-bottom: 15px;
+.artist{
+color:#b3b3b3;
+margin-bottom:15px;
 }
 
-/* LYRICS BOX */
+/* LYRICS */
 
-.lyrics {
-
-height: 300px;
-overflow-y: auto;
-
-background-image: url("back.png");
-background-size: cover;
-background-position: center;
-
-padding: 20px;
-border-radius: 15px;
-line-height: 1.7;
-
-background-blend-mode: overlay;
-background-color: rgba(0,0,0,0.6);
-
+.lyrics{
+height:300px;
+overflow-y:auto;
+background-image:url("back.png");
+background-size:cover;
+background-position:center;
+padding:20px;
+border-radius:15px;
+line-height:1.7;
+background-blend-mode:overlay;
+background-color:rgba(0,0,0,.6);
 }
 
-/* AUDIO PLAYER */
+/* KARAOKE STYLE */
 
-audio {
-width: 100%;
-margin-top: 20px;
+.lyric-line{
+opacity:.4;
+margin:6px 0;
+transition:.3s;
+}
+
+.active-line{
+opacity:1;
+color:#1db954;
+font-weight:bold;
+font-size:19px;
+}
+
+/* AUDIO */
+
+audio{
+width:100%;
+margin-top:20px;
 }
 
 /* RESTART BUTTON */
 
-#restartBtn {
-
-margin-top: 15px;
-padding: 12px 30px;
-
-font-size: 16px;
-
-border: none;
-border-radius: 40px;
-
-background: #1db954;
-color: white;
-
-cursor: pointer;
-transition: 0.3s;
-
+#restartBtn{
+margin-top:15px;
+padding:12px 30px;
+font-size:16px;
+border:none;
+border-radius:40px;
+background:#1db954;
+color:white;
+cursor:pointer;
+transition:.3s;
 }
 
-#restartBtn:hover {
-background: #1ed760;
+#restartBtn:hover{
+background:#1ed760;
 }
 
 </style>
@@ -177,115 +177,128 @@ Limang Taon Ikaw Pa Rin
 by Reymarc Jason
 </div>
 
-
-<div class="lyrics">
-
-<b>Verse 1</b><br>
-Limang taon na ang lumipas<br>
-Simula nang ika’y makilala<br>
-Hindi ko akalaing sa ngiti mo<br>
-Doon pala ako uuwi<br><br>
-
-Sa bawat araw na kasama ka<br>
-Mas lalong tumitibay<br>
-Ang pangarap kong hawakan ka<br>
-Habambuhay, sabay<br><br>
-
-<b>Pre-Chorus</b><br>
-Sa saya man o lungkot ng buhay<br>
-Ikaw ang aking sandigan<br>
-At sa bawat tibok ng puso ko<br>
-Ikaw ang dahilan<br><br>
-
-<b>Chorus</b><br>
-Limang taon, ikaw pa rin<br>
-Ang pipiliin ko hanggang sa huli<br>
-Sa bawat unos at bawat sandali<br>
-Ikaw ang tahanan ko palagi<br>
-At kung may habang-buhay man<br>
-Ikaw lang ang mamahalin<br><br>
-
-<b>Verse 2</b><br>
-Sa bawat alaala nating dalawa<br>
-May kwentong di malilimutan<br>
-Mga pangarap nating sabay<br>
-Unti-unti nang natutupad<br><br>
-
-Hawak ang kamay mo ngayon<br>
-Wala nang hihilingin pa<br>
-Dahil ang puso kong ito<br>
-Sa’yo lang talaga<br><br>
-
-<b>Pre-Chorus</b><br>
-Kahit saan man tayo dalhin<br>
-Ng panahon at tadhana<br>
-Pangako ko sa’yo mahal<br>
-Hindi ka mag-iisa<br><br>
-
-<b>Chorus</b><br>
-Limang taon, ikaw pa rin<br>
-Ang pipiliin ko hanggang sa huli<br>
-Sa bawat unos at bawat sandali<br>
-Ikaw ang tahanan ko palagi<br>
-At kung may habang-buhay man<br>
-Ikaw lang ang mamahalin<br><br>
-
-<b>Bridge</b><br>
-Kung muling magsisimula ang lahat<br>
-Ikaw pa rin ang hahanapin<br>
-Sa bawat panalangin ko gabi-gabi<br>
-Ikaw pa rin ang hihilingin<br><br>
-
-<b>Final Chorus</b><br>
-Limang taon, ikaw pa rin<br>
-At habang-buhay sana’y tayo rin<br>
-Sa bawat bukas na darating<br>
-Ikaw ang kasama kong hangarin<br>
-Maligayang limang taon sa atin<br>
-Mahal na mahal kita..<br><br>
-
-Mahal na mahal..... kita...
-
-</div>
-
+<div class="lyrics" id="lyricsBox"></div>
 
 <audio id="audioPlayer">
 <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-
 <button id="restartBtn">
 🔁 Restart Song
 </button>
-
 
 </div>
 
 
 <script>
 
-const enterBtn = document.getElementById("enterBtn");
-const restartBtn = document.getElementById("restartBtn");
+const enterBtn=document.getElementById("enterBtn");
+const restartBtn=document.getElementById("restartBtn");
 
-const enterScreen = document.getElementById("enterScreen");
-const playerScreen = document.getElementById("playerScreen");
+const enterScreen=document.getElementById("enterScreen");
+const playerScreen=document.getElementById("playerScreen");
 
-const audioPlayer = document.getElementById("audioPlayer");
+const audioPlayer=document.getElementById("audioPlayer");
+
+const lyricsBox=document.getElementById("lyricsBox");
 
 
-enterBtn.addEventListener("click", () => {
+/* LOAD LRC FILE */
 
-enterScreen.style.display = "none";
-playerScreen.style.display = "block";
+fetch("song.lrc")
+.then(res=>res.text())
+.then(text=>{
+
+const lines=text.split("\n");
+
+let lyrics=[];
+
+lines.forEach(line=>{
+
+const match=line.match(/\[(\d+):(\d+\.\d+)\](.*)/);
+
+if(match){
+
+const min=parseInt(match[1]);
+const sec=parseFloat(match[2]);
+
+const time=min*60+sec;
+
+lyrics.push({
+time,
+text:match[3]
+});
+
+}
+
+});
+
+
+lyrics.forEach((line,index)=>{
+
+const div=document.createElement("div");
+
+div.className="lyric-line";
+div.id="line-"+index;
+
+div.innerText=line.text;
+
+lyricsBox.appendChild(div);
+
+});
+
+
+audioPlayer.addEventListener("timeupdate",()=>{
+
+const currentTime=audioPlayer.currentTime;
+
+lyrics.forEach((line,index)=>{
+
+if(currentTime>=line.time){
+
+document
+.querySelectorAll(".lyric-line")
+.forEach(el=>el.classList.remove("active-line"));
+
+const activeLine=document.getElementById("line-"+index);
+
+if(activeLine){
+
+activeLine.classList.add("active-line");
+
+activeLine.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+}
+
+});
+
+});
+
+});
+
+
+/* ENTER BUTTON */
+
+enterBtn.addEventListener("click",()=>{
+
+enterScreen.style.display="none";
+playerScreen.style.display="block";
 
 audioPlayer.play();
 
 });
 
 
-restartBtn.addEventListener("click", () => {
+/* RESTART BUTTON */
 
-audioPlayer.currentTime = 0;
+restartBtn.addEventListener("click",()=>{
+
+audioPlayer.currentTime=0;
 audioPlayer.play();
 
 });
