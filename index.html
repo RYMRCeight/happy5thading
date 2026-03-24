@@ -22,6 +22,8 @@ color:white;
 overflow:hidden;
 }
 
+/* DARK OVERLAY */
+
 body::before{
 content:"";
 position:absolute;
@@ -90,27 +92,32 @@ color:#b3b3b3;
 margin-bottom:15px;
 }
 
-/* LYRICS */
+/* LYRICS CONTAINER */
 
 .lyrics{
-
 height:300px;
 overflow-y:auto;
-
-/* background stays fixed */
-
-background-image:url("back.png");
-background-size:cover;
-background-position:center;
-background-attachment:local;
-
+position:relative;
 padding:20px;
 border-radius:15px;
 line-height:1.7;
+background:rgba(0,0,0,.6);
+}
 
-background-blend-mode:overlay;
-background-color:rgba(0,0,0,.6);
+/* FIXED BACKGROUND IMAGE INSIDE LYRICS */
 
+.lyrics::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background-image:url("back.png");
+background-size:cover;
+background-position:center;
+opacity:.35;
+z-index:-1;
 }
 
 /* KARAOKE STYLE */
@@ -118,7 +125,7 @@ background-color:rgba(0,0,0,.6);
 .lyric-line{
 opacity:.4;
 margin:6px 0;
-transition:.3s;
+transition:.35s ease;
 }
 
 .active-line{
@@ -126,9 +133,10 @@ opacity:1;
 color:#1db954;
 font-weight:bold;
 font-size:19px;
+text-shadow:0 0 8px rgba(29,185,84,.6);
 }
 
-/* AUDIO */
+/* AUDIO PLAYER */
 
 audio{
 width:100%;
