@@ -264,27 +264,33 @@ lyricsBox.appendChild(div);
 });
 
 
-audioPlayer.addEventListener("timeupdate",()=>{
+let currentActiveIndex = -1;
 
-const currentTime=audioPlayer.currentTime;
+audioPlayer.addEventListener("timeupdate", () => {
 
-lyrics.forEach((line,index)=>{
+const currentTime = audioPlayer.currentTime;
 
-if(currentTime>=line.time){
+lyrics.forEach((line, index) => {
+
+if (currentTime >= line.time && index !== currentActiveIndex) {
+
+currentActiveIndex = index;
 
 document
 .querySelectorAll(".lyric-line")
-.forEach(el=>el.classList.remove("active-line"));
+.forEach(el => el.classList.remove("active-line"));
 
-const activeLine=document.getElementById("line-"+index);
+const activeLine = document.getElementById("line-" + index);
 
-if(activeLine){
+if (activeLine) {
 
 activeLine.classList.add("active-line");
 
-activeLine.scrollIntoView({
-behavior:"smooth",
-block:"center"
+/* Smooth controlled scrolling (mobile stable) */
+
+lyricsBox.scrollTo({
+top: activeLine.offsetTop - lyricsBox.offsetHeight / 2,
+behavior: "smooth"
 });
 
 }
@@ -294,9 +300,6 @@ block:"center"
 });
 
 });
-
-});
-
 
 /* ENTER BUTTON */
 
