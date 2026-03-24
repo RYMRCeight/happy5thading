@@ -4,15 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Limang Taon Ikaw Pa Rin – Reymarc Jason</title>
+<title>For You 💚</title>
 
 <style>
 
 body {
 margin: 0;
 font-family: 'Segoe UI', sans-serif;
-
-/* fullscreen background */
 
 background-image: url("back.png");
 background-size: cover;
@@ -25,7 +23,7 @@ align-items: center;
 height: 100vh;
 }
 
-/* dark overlay effect */
+/* DARK OVERLAY */
 
 body::before {
 content: "";
@@ -44,8 +42,8 @@ z-index: 1;
 }
 
 #enterBtn {
-padding: 18px 45px;
-font-size: 24px;
+padding: 20px 50px;
+font-size: 26px;
 border: none;
 background: black;
 color: white;
@@ -123,6 +121,30 @@ width: 100%;
 margin-top: 20px;
 }
 
+/* RESTART BUTTON */
+
+#restartBtn {
+
+margin-top: 15px;
+padding: 12px 30px;
+
+font-size: 16px;
+
+border: none;
+border-radius: 40px;
+
+background: #1db954;
+color: white;
+
+cursor: pointer;
+transition: 0.3s;
+
+}
+
+#restartBtn:hover {
+background: #1ed760;
+}
+
 </style>
 </head>
 
@@ -132,8 +154,6 @@ margin-top: 20px;
 <!-- ENTER SCREEN -->
 
 <div id="enterScreen">
-
-<h1>🎧 Limang Taon Ikaw Pa Rin</h1>
 
 <button id="enterBtn">
 ENTER
@@ -233,21 +253,39 @@ Mahal na mahal..... kita...
 <source src="song.mp3" type="audio/mpeg">
 </audio>
 
+
+<button id="restartBtn">
+🔁 Restart Song
+</button>
+
+
 </div>
 
 
 <script>
 
 const enterBtn = document.getElementById("enterBtn");
+const restartBtn = document.getElementById("restartBtn");
+
 const enterScreen = document.getElementById("enterScreen");
 const playerScreen = document.getElementById("playerScreen");
+
 const audioPlayer = document.getElementById("audioPlayer");
+
 
 enterBtn.addEventListener("click", () => {
 
 enterScreen.style.display = "none";
 playerScreen.style.display = "block";
 
+audioPlayer.play();
+
+});
+
+
+restartBtn.addEventListener("click", () => {
+
+audioPlayer.currentTime = 0;
 audioPlayer.play();
 
 });
