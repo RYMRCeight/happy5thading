@@ -22,8 +22,6 @@ color:white;
 overflow:hidden;
 }
 
-/* DARK OVERLAY */
-
 body::before{
 content:"";
 position:absolute;
@@ -47,11 +45,6 @@ background:black;
 color:white;
 border-radius:50px;
 cursor:pointer;
-transition:.3s;
-}
-
-#enterBtn:hover{
-background:#333;
 }
 
 /* PLAYER SCREEN */
@@ -76,7 +69,6 @@ z-index:1;
 width:220px;
 border-radius:18px;
 margin-bottom:15px;
-box-shadow:0 10px 25px rgba(0,0,0,.5);
 }
 
 /* TEXT */
@@ -84,7 +76,6 @@ box-shadow:0 10px 25px rgba(0,0,0,.5);
 .song-title{
 font-size:26px;
 font-weight:bold;
-margin-top:10px;
 }
 
 .artist{
@@ -92,7 +83,7 @@ color:#b3b3b3;
 margin-bottom:15px;
 }
 
-/* LYRICS CONTAINER */
+/* LYRICS */
 
 .lyrics{
 height:300px;
@@ -104,7 +95,7 @@ line-height:1.7;
 background:rgba(0,0,0,.6);
 }
 
-/* FIXED BACKGROUND IMAGE INSIDE LYRICS */
+/* FIXED BACKGROUND */
 
 .lyrics::before{
 content:"";
@@ -154,11 +145,6 @@ border-radius:40px;
 background:#1db954;
 color:white;
 cursor:pointer;
-transition:.3s;
-}
-
-#restartBtn:hover{
-background:#1ed760;
 }
 
 </style>
@@ -170,11 +156,7 @@ background:#1ed760;
 <!-- ENTER SCREEN -->
 
 <div id="enterScreen">
-
-<button id="enterBtn">
-ENTER
-</button>
-
+<button id="enterBtn">ENTER</button>
 </div>
 
 
@@ -182,8 +164,7 @@ ENTER
 
 <div id="playerScreen">
 
-<img class="album"
-src="cover.png">
+<img class="album" src="cover.png">
 
 <div class="song-title">
 Limang Taon Ikaw Pa Rin
@@ -218,6 +199,9 @@ const audioPlayer=document.getElementById("audioPlayer");
 
 const lyricsBox=document.getElementById("lyricsBox");
 
+let lyrics=[];
+let currentActiveIndex=-1;
+
 
 /* LOAD LRC FILE */
 
@@ -226,8 +210,6 @@ fetch("song.lrc")
 .then(text=>{
 
 const lines=text.split("\n");
-
-let lyrics=[];
 
 lines.forEach(line=>{
 
@@ -238,10 +220,8 @@ if(match){
 const min=parseInt(match[1]);
 const sec=parseFloat(match[2]);
 
-const time=min*60+sec;
-
 lyrics.push({
-time,
+time:min*60+sec,
 text:match[3]
 });
 
@@ -264,42 +244,41 @@ lyricsBox.appendChild(div);
 });
 
 
-let currentActiveIndex = -1;
+audioPlayer.addEventListener("timeupdate",()=>{
 
-audioPlayer.addEventListener("timeupdate", () => {
+const currentTime=audioPlayer.currentTime;
 
-const currentTime = audioPlayer.currentTime;
+for(let i=0;i<lyrics.length;i++){
 
-lyrics.forEach((line, index) => {
+if(currentTime>=lyrics[i].time && i!==currentActiveIndex){
 
-if (currentTime >= line.time && index !== currentActiveIndex) {
-
-currentActiveIndex = index;
+currentActiveIndex=i;
 
 document
 .querySelectorAll(".lyric-line")
-.forEach(el => el.classList.remove("active-line"));
+.forEach(el=>el.classList.remove("active-line"));
 
-const activeLine = document.getElementById("line-" + index);
+const activeLine=document.getElementById("line-"+i);
 
-if (activeLine) {
+if(activeLine){
 
 activeLine.classList.add("active-line");
 
-/* Smooth controlled scrolling (mobile stable) */
-
 lyricsBox.scrollTo({
-top: activeLine.offsetTop - lyricsBox.offsetHeight / 2,
-behavior: "smooth"
+top:activeLine.offsetTop-lyricsBox.offsetHeight/2,
+behavior:"smooth"
 });
 
 }
 
 }
 
+}
+
 });
 
 });
+
 
 /* ENTER BUTTON */
 
